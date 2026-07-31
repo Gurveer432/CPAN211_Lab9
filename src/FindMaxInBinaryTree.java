@@ -11,14 +11,24 @@ class Node {
 public class FindMaxInBinaryTree {
     Node root;
 
-    // TODO: Implement this method – Use recursion
+    // Finds the maximum value in the binary tree using recursion
     public int findMax(Node root) {
-        // Your implementation here
-        return 0;
+        // Base case: if the node is null, return the smallest possible integer
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+
+        // Recursively find the maximum value in the left and right subtrees
+        int leftMax = findMax(root.left);
+        int rightMax = findMax(root.right);
+
+        // Return the maximum among the current node, left subtree, and right subtree
+        return Math.max(root.value, Math.max(leftMax, rightMax));
     }
 
     public static void main(String[] args) {
         FindMaxInBinaryTree tree = new FindMaxInBinaryTree();
+
         tree.root = new Node(10);
         tree.root.left = new Node(20);
         tree.root.right = new Node(5);
